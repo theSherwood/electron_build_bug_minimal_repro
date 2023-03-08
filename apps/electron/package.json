@@ -1,0 +1,46 @@
+{
+  "name": "@codex/electron",
+  "version": "0.0.1",
+  "description": "",
+  "main": "packages/main/dist/index.cjs",
+  "scripts": {
+    "dev": "npm run watch",
+    "build": "npm run build:packages && npm run compile",
+    "build:packages": "npm run build:main && npm run build:preload && npm run build:renderer",
+    "build:main": "npm run update_vendors && cd ./packages/main && vite build",
+    "build:preload": "npm run update_vendors && cd ./packages/preload && vite build",
+    "build:renderer": "npm run update_vendors && cd ./packages/renderer && vite build",
+    "compile": "env-cmd -e prod electron-builder build --config electron-builder.config.js --dir",
+    "deploy": "env-cmd -e prod electron-builder build --publish always --config electron-builder.config.js",
+    "watch": "node scripts/watch.mjs",
+    "test": "",
+    "update_vendors": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs",
+    "clean": "npm run clean:tmp && npm run clean:dist",
+    "clean:tmp": "trash tmp && make-dir tmp",
+    "clean:dist": "trash dist",
+    "postinstall": "npm run update_vendors"
+  },
+  "author": "",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-url": "^7.0.0",
+    "cross-env": "7.0.3",
+    "electron": "23.0.0",
+    "electron-builder": "23.6.0",
+    "env-cmd": "^10.1.0",
+    "make-dir-cli": "^3.0.0",
+    "trash-cli": "^5.0.0",
+    "typescript": "^4.9.5",
+    "unplugin-auto-expose": "0.0.4",
+    "vite": "^3.2.5",
+    "vite-plugin-electron": "^0.9.0",
+    "vite-plugin-html-config": "^1.0.9"
+  },
+  "dependencies": {
+    "electron-log": "^5.0.0-beta.16",
+    "electron-updater": "^5.3.0",
+    "level": "8.0.0",
+    "tuple-database": "^2.1.19"
+  }
+}

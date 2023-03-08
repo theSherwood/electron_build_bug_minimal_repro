@@ -1,0 +1,9 @@
+node_modules
+dist
+dev
+tmp
+out
+*.log
+.electron-vendors.cache.json
+.browserslistrc
+# .env-cmdrc.json

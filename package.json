@@ -1,0 +1,19 @@
+{
+  "name": "codex",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "dev:electron": "concurrently --restart-tries 3 \"cd packages/entity_store && npm run dev\" \"cd packages/client && npm run dev\" \"cd apps/electron && sleep 10 && npm run dev\""
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "turbo": "^1.7.0"
+  }
+}
