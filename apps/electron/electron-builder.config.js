@@ -17,7 +17,6 @@ module.exports = async function () {
   return {
     appId: "com.electron.codex_test",
     productName,
-    copyright: "Copyright © 2023 Adam Sherwood and Iian Neill",
     directories: {
       output: "dist",
       buildResources: "build_resources",
@@ -39,17 +38,5 @@ module.exports = async function () {
     dmg: {
       title: `${productName} ${version}`,
     },
-
-    // Disable asar to have the service worker function
-    // TODO : have asar set to true and use asarUnpack to keep sw.js external?
-    asar: false,
-
-    publish: [
-      {
-        provider: "github",
-        owner: "theSherwood",
-        repo: "codex",
-      },
-    ],
   };
 };

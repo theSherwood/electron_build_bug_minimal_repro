@@ -10,15 +10,11 @@
     "build:main": "npm run update_vendors && cd ./packages/main && vite build",
     "build:preload": "npm run update_vendors && cd ./packages/preload && vite build",
     "build:renderer": "npm run update_vendors && cd ./packages/renderer && vite build",
-    "compile": "env-cmd -e prod electron-builder build --config electron-builder.config.js --dir",
-    "deploy": "env-cmd -e prod electron-builder build --publish always --config electron-builder.config.js",
+    "compile": "env-cmd -e prod ../../node_modules/.bin/electron-builder --config electron-builder.config.js --dir",
+    "deploy": "env-cmd -e prod npx electron-builder build --publish always --config electron-builder.config.js",
     "watch": "node scripts/watch.mjs",
     "test": "",
-    "update_vendors": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs",
-    "clean": "npm run clean:tmp && npm run clean:dist",
-    "clean:tmp": "trash tmp && make-dir tmp",
-    "clean:dist": "trash dist",
-    "postinstall": "npm run update_vendors"
+    "update_vendors": "cross-env ELECTRON_RUN_AS_NODE=1 electron scripts/update-electron-vendors.mjs"
   },
   "author": "",
   "devDependencies": {
@@ -40,8 +36,6 @@
 
   "dependencies": {
     "electron-log": "^5.0.0-beta.16",
-    "electron-updater": "^5.3.0",
-    "level": "8.0.0",
-    "tuple-database": "^2.1.19"
+    "electron-updater": "^5.3.0"
   }
 }

@@ -10,32 +10,6 @@ const IS_DEV = process.env.MODE === "development";
 const IS_PROD = process.env.MODE === "production";
 const VERSION = process.env.VITE_APP_VERSION;
 
-const setup_ipc = () => {
-  ipcMain.handle("ping", () => "pong");
-  ipcMain.handle("test", (_event, thing) => {
-    console.log(thing);
-    return "test-end-to-end";
-  });
-  let broadcast = (event, id: string, event_name: string, ...args) => {
-    let wins = BrowserWindow.getAllWindows();
-    wins.forEach((w) => {
-      let sending_window = event.sender.id;
-      if (sending_window !== w.webContents.id) {
-        console.log(
-          "Syncing",
-          event_name,
-          id,
-          "from window",
-          sending_window,
-          "to window",
-          w.webContents.id
-        );
-        w.webContents.send(event_name, ...args);
-      }
-    });
-  };
-};
-
 const create_window = async () => {
   const win = new BrowserWindow({
     show: false,
@@ -81,23 +55,11 @@ const create_window = async () => {
 
   await win.loadURL(pageUrl);
 
-  await win.webContents.send(
-    "log_electron_main",
-    "\n",
-    "Hello!",
-    "\napp.isPackaged   : " + app.isPackaged,
-    "\nprocess.env.MODE : " + process.env.MODE,
-    "\nversion          : " + VERSION
-  );
-
-  console.log("Window", win.webContents.id, "created");
   return win;
 };
 
 app.whenReady().then(() => {
-  setup_ipc();
   create_window();
-  // create_window();
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
