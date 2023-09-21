@@ -14,9 +14,6 @@
   ],
   "devDependencies": {
     "concurrently": "^7.6.0",
-    "turbo": "^1.7.0",
-    "electron-builder": "23.6.0"
-  },
-  "dependencies": {
+    "turbo": "^1.7.0"
   }
 }

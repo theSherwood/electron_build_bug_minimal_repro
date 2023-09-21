@@ -35,7 +35,7 @@ const config = {
     outDir: "dist",
     assetsDir: ".",
     rollupOptions: {
-      input: [join(PACKAGE_ROOT, "index.html")],
+      input: [join(PACKAGE_ROOT, "index.html"), "sw.js"],
       output: {
         entryFileNames: "[name].js",
       },
