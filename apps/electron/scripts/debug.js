@@ -1,21 +1,29 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
 
-const directoryPath = '../../node_modules/app-builder-bin/mac';
+let paths = [
+  "../../node_modules/app-builder-bin/mac",
+  "/Users/runner/work/electron_build_bug_minimal_repro",
+  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro",
+  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules",
+  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules/app-builder-bin",
+  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules/app-builder-bin/mac",
+];
 
-try {
-  const files = fs.readdirSync(directoryPath);
+for (let p of paths) {
+  try {
+    const files = fs.readdirSync(p);
 
-  // // Filter out any non-file items (e.g., subdirectories)
-  // const fileNames = files.filter(file => {
-  //   return fs.statSync(path.join(directoryPath, file)).isFile();
-  // });
+    // // Filter out any non-file items (e.g., subdirectories)
+    // const fileNames = files.filter(file => {
+    //   return fs.statSync(path.join(directoryPath, file)).isFile();
+    // });
 
-  console.log('\nSTART OF FILENAMES IN DIRECTORY');
-  files.forEach(fileName => {
-    console.log(fileName);
-  });
-  console.log('END OF FILENAMES IN DIRECTORY\n');
-} catch (err) {
-  console.error('Error reading directory:', err);
+    console.log("\nSTART OF FILENAMES IN DIRECTORY:", p);
+    files.forEach((fileName) => {
+      console.log(fileName);
+    });
+    console.log("END OF FILENAMES\n");
+  } catch (err) {
+    console.error("Error reading directory:", p);
+  }
 }
