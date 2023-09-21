@@ -18,11 +18,12 @@ for (let p of paths) {
   }
 }
 
+let ex =
+  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules/app-builder-bin/mac/app-builder_amd64";
 try {
-  fs.chmodSync(
-    "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules/app-builder-bin/mac/app-builder_amd64",
-    fs.constants.S_IRUSR | fs.constants.S_IWUSR | fs.constants.S_IXUSR
-  );
+  console.log("\nMODE BEFORE:", fs.statSync(ex).mode);
+  fs.chmodSync(ex, 0o777);
+  console.log("MODE AFTER:", fs.statSync(ex).mode, "\n");
 } catch (e) {
   console.error("\nFAILED TO CHMOD\n");
 }
