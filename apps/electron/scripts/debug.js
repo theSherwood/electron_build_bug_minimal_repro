@@ -2,10 +2,6 @@ const fs = require("fs");
 
 let paths = [
   "../../node_modules/app-builder-bin/mac",
-  "/Users/runner/work/electron_build_bug_minimal_repro",
-  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro",
-  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules",
-  "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules/app-builder-bin",
   "/Users/runner/work/electron_build_bug_minimal_repro/electron_build_bug_minimal_repro/node_modules/app-builder-bin/mac",
 ];
 
