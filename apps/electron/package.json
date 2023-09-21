@@ -27,7 +27,7 @@
     "@rollup/plugin-url": "^7.0.0",
     "cross-env": "7.0.3",
     "electron": "23.0.0",
-    "electron-builder": "23.6.0",
+    "electron-builder": "24.1.0",
     "env-cmd": "^10.1.0",
     "make-dir-cli": "^3.0.0",
     "trash-cli": "^5.0.0",
